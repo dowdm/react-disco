@@ -7,6 +7,7 @@ class App extends React.Component {
   constructor(props){
     super(props)
     this.state = {
+      queryTerm: null,
       masterRecordList: {
         1: {
           imageUrl: 'http://www.slate.com/content/dam/slate/articles/health_and_science/Science/2017/08/170803_MEDEX_SickDog.jpg.CROP.promo-xlarge2.jpg',
@@ -18,18 +19,24 @@ class App extends React.Component {
         }
       }
     }
+    this.handleSearch = this.handleSearch.bind(this);
+  }
+
+  handleSearch(queryTerm){
+    this.state.queryTerm = queryTerm;
+    console.log(this.state);
   }
 
   render() {
     let keys =Object.keys(this.state.masterRecordList);
     console.log(keys);
     let displayContent
-    console.log(this.state.masterRecordList);
+    console.log(this.state);
     if(keys.length > 0){
       displayContent =
-        <RecordList masterRecordList={this.state.masterRecordList}/>
+        <RecordList masterRecordList={this.state.masterRecordList} queryTerm={this.state.queryTerm}/>
     } else {
-      displayContent = <ArtistSearch/>
+      displayContent = <ArtistSearch onSearch={this.handleSearch}/>
     }
     return (
       <div className="App">

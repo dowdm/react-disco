@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
-function ArtistSearch(){
+function ArtistSearch(props){
   let input
   return (
     <div>
@@ -11,6 +11,7 @@ function ArtistSearch(){
         if (!input.value.trim()) {
           return
         }
+        props.onSearch(input.value)
         // dispatch(fetchSongId(input.value.trim()));
         input.value = ''
       }}>
