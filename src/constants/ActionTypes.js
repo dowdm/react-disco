@@ -1,3 +1,3 @@
-export const CHANGE_QUERY = 'CHANGE_QUERY';
+export const SET_QUERY = 'SET_QUERY';
 export const REQUEST_ARTIST = 'REQUEST_ARTIST';
 export const RECEIVE_ARTIST = 'RECEIVE_ARTIST';

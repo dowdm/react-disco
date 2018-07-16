@@ -9,14 +9,14 @@ class App extends React.Component {
     this.state = {
       queryTerm: null,
       masterRecordList: {
-        1: {
-          imageUrl: 'http://www.slate.com/content/dam/slate/articles/health_and_science/Science/2017/08/170803_MEDEX_SickDog.jpg.CROP.promo-xlarge2.jpg',
-          albumName:'something else'
-        },
-        2: {
-          imageUrl: 'http://www.slate.com/content/dam/slate/articles/health_and_science/Science/2017/08/170803_MEDEX_SickDog.jpg.CROP.promo-xlarge2.jpg',
-          albumName:'something else'
-        }
+        // 1: {
+        //   imageUrl: 'http://www.slate.com/content/dam/slate/articles/health_and_science/Science/2017/08/170803_MEDEX_SickDog.jpg.CROP.promo-xlarge2.jpg',
+        //   albumName:'something else'
+        // },
+        // 2: {
+        //   imageUrl: 'http://www.slate.com/content/dam/slate/articles/health_and_science/Science/2017/08/170803_MEDEX_SickDog.jpg.CROP.promo-xlarge2.jpg',
+        //   albumName:'something else'
+        // }
       }
     }
     this.handleSearch = this.handleSearch.bind(this);
