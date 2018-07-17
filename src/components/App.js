@@ -5,22 +5,25 @@ import RecordList from './RecordList'
 import { connect } from 'react-redux';
 
 class App extends React.Component {
-  constructor(props){
-    super(props)
-  }
+  // constructor(props){
+  //   super(props)
+  //   this.state = {
+  //     masterRecordList: {},
+  //     queryTerm: null
+  //   }
+  // }
 
   // handleSearch(queryTerm){
   //   this.props.queryTerm = queryTerm;
   // }
 
   render() {
-    let keys =Object.keys(this.state.masterRecordList);
-    console.log(keys);
+    let keys = Object.keys(this.props.masterRecordList);
     let displayContent
     console.log(this.state);
     if(keys.length > 0){
       displayContent =
-        <RecordList masterRecordList={this.props.masterRecordList} queryTerm={this.props.queryTerm}/>
+        <RecordList/>
     } else {
       displayContent = <ArtistSearch onSearch={this.handleSearch}/>
     }

@@ -1,13 +1,17 @@
 import constants from './../constants';
 const { initialState, types } = constants;
 
-const setQueryReducer = (state = initialState.queryTerm, action) => {
+const setQueryReducer = (state = initialState, action) => {
   let newArtistsByIdEntry;
   let newArtistsByIdStateSlice;
   let newMasterRecordListStateSlice;
+  let newQueryTermSlice;
   switch (action.type) {
   case types.SET_QUERY:
-    return action.queryTerm;
+  newQueryTermSlice = Object.assign({}, state, {
+    queryTerm: action.queryTerm
+  });
+    return newQueryTermSlice;
 
   case types.REQUEST_ARTIST:
     newArtistsByIdEntry = {

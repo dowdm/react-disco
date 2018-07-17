@@ -12,9 +12,9 @@ function ArtistSearch({ dispatch }){
         if (!input.value.trim()) {
           return
         }
-        dispatch(setQueryTerm(input.value.trim()));
+        dispatch(setQueryTerm(input.value));
         dispatch(fetchArtistId(input.value.trim()));
-        
+
         input.value = ''
       }}>
         <input placeholder="Artist Name" ref={node => {

@@ -1,25 +1,31 @@
 import React from 'react'
 import Record from './Record'
 import { connect } from 'react-redux';
+import { setRecords } from './../actions';
+
 
 function RecordList(props){
+  const {dispatch} = props;
+  console.log(props);
+  console.log(dispatch)
   return (
     <div>
       <h1>Records by {props.queryTerm}</h1>
-      {Object.keys(props.masterRecordList).map(function(recordId) {
-        var record = props.masterRecordList[recordId]
+      <p onClick={() => dispatch(setRecords([]))}>Go Back</p>
+      {props.masterRecordList.map(function(record) {
         return  <Record
-          imageUrl={record.imageUrl}
-          albumName={record.albumName}
-          key={recordId}
-          recordId={recordId} />
+          imageUrl={record.thumb}
+          albumName={record.title}
+          key={record.id}
+          recordId={record.id} />
       })}
     </div>
   )
 }
 const mapStateToProps = state => {
-  return {
-    masterRecordList: state.masterRecordList
+  return  {
+    masterRecordList: state.masterRecordList,
+    queryTerm: state.queryTerm
   };
 };
 
