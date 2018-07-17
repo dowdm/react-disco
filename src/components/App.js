@@ -5,17 +5,6 @@ import RecordList from './RecordList'
 import { connect } from 'react-redux';
 
 class App extends React.Component {
-  // constructor(props){
-  //   super(props)
-  //   this.state = {
-  //     masterRecordList: {},
-  //     queryTerm: null
-  //   }
-  // }
-
-  // handleSearch(queryTerm){
-  //   this.props.queryTerm = queryTerm;
-  // }
 
   render() {
     let keys = Object.keys(this.props.masterRecordList);
@@ -41,6 +30,5 @@ const mapStateToProps = state => {
     queryTerm: state.queryTerm
   };
 };
-
 
 export default connect(mapStateToProps)(App);

@@ -23,6 +23,21 @@ export const setRecords = (releases) => ({
   releases
 });
 
+export const requestDetails = (recordId) => ({
+  type: types.REQUEST_ARTIST,
+  recordId: recordId
+});
+
+export const receiveDetails = (recordId) => ({
+  type: types.RECEIVE_DETAILS,
+  recordId: recordId
+});
+
+export const setDetails = (details) => ({
+  type: types.SET_DETAILS,
+  details
+});
+
 export function fetchArtistId(queryTerm) {
   return function (dispatch) {
     const localArtistId = v4();
@@ -48,8 +63,7 @@ export function fetchArtistId(queryTerm) {
 
 export function fetchReleases(artistName, discogsArtistId, localArtistId, dispatch) {
   let discogsArtistIdString = discogsArtistId.toString();
-  console.log(discogsArtistIdString);
-  return fetch('https://api.discogs.com/artists/'+ discogsArtistId +'/releases?page=1&per_page=75&token=sssKUBpkkcKfFjXIahQgfpZlWzgVENurwhXnkoNn').then(
+  return fetch('https://api.discogs.com/artists/'+ discogsArtistId +'/releases?&token=sssKUBpkkcKfFjXIahQgfpZlWzgVENurwhXnkoNn').then(
     response => response.json(),
     error => console.log('An error occurred.', error)
   ).then(function(j){
@@ -61,7 +75,24 @@ export function fetchReleases(artistName, discogsArtistId, localArtistId, dispat
       dispatch(setRecords(releases));
 
     } else {
-      console.log('We couldn\'t locate lyrics for this song!');
+      console.log('We couldn\'t locate this artist!');
     }
   });
+}
+
+export function fetchAlbumDetails(recordId) {
+  return function (dispatch) {
+    let recordIdString = recordId.toString();
+    return fetch('https://api.discogs.com/releases/' + recordIdString + '?token=sssKUBpkkcKfFjXIahQgfpZlWzgVENurwhXnkoNn').then(
+      response => response.json(),
+      error => console.log('An error occurred.', error)
+    ).then(function(j){
+      if (j) {
+        dispatch(receiveDetails(recordId));
+        dispatch(setDetails(j));
+      } else {
+        console.log('We couldn\'t locate details for this record!');
+      }
+    });
+  }
 }

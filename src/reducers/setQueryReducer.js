@@ -6,6 +6,9 @@ const setQueryReducer = (state = initialState, action) => {
   let newArtistsByIdStateSlice;
   let newMasterRecordListStateSlice;
   let newQueryTermSlice;
+  let newSelectedRecordSlice;
+  let newDetailsSlice;
+  let newSelectedRecord
   switch (action.type) {
   case types.SET_QUERY:
   newQueryTermSlice = Object.assign({}, state, {
@@ -41,8 +44,33 @@ const setQueryReducer = (state = initialState, action) => {
     newMasterRecordListStateSlice = Object.assign({}, state, {
       masterRecordList: action.releases
     });
-
     return newMasterRecordListStateSlice;
+
+  case types.REQUEST_DETAILS:
+    newSelectedRecord = {
+      isFetching: true,
+      recordId: action.recordId,
+    };
+    newSelectedRecordSlice = Object.assign({}, state, {
+      [action.recordId]: newSelectedRecord
+    });
+    return newSelectedRecordSlice;
+
+    case types.RECEIVE_DETAILS:
+      newSelectedRecord = Object.assign({}, state[action.recordId], {
+        isFetching: false,
+        recordId: action.recordId
+      });
+      newSelectedRecordSlice = Object.assign({}, state, {
+        [action.recordId]: newSelectedRecord
+      });
+      return newSelectedRecordSlice;
+
+    case types.SET_DETAILS:
+      newDetailsSlice = Object.assign({}, state, {
+        selectedRecordDetails: action.details
+      });
+      return newDetailsSlice;
 
   default:
     return state;
