@@ -1,12 +1,12 @@
 import React from 'react'
 import Record from './Record'
-import { connect } from 'react-redux';
-import { setRecords } from './../actions';
+import { connect } from 'react-redux'
+import { setRecords } from './../actions'
 
 
 function RecordList(props){
-  const {dispatch} = props;
-  console.log(props);
+  const {dispatch} = props
+  console.log(props)
   console.log(dispatch)
   return (
     <div>
@@ -26,8 +26,8 @@ const mapStateToProps = state => {
   return  {
     masterRecordList: state.masterRecordList,
     queryTerm: state.queryTerm
-  };
-};
+  }
+}
 
 
-export default connect(mapStateToProps)(RecordList);
+export default connect(mapStateToProps)(RecordList)

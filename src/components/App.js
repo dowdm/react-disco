@@ -3,17 +3,17 @@ import './App.css'
 import ArtistSearch from './ArtistSearch'
 import RecordList from './RecordList'
 import SelectedRecord from './SelectedRecord'
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
 
 class App extends React.Component {
 
   render() {
-    let keys = Object.keys(this.props.selectedRecordDetails);
+    let keys = Object.keys(this.props.selectedRecordDetails)
     let displayContent
-    console.log(this.state);
+    console.log(this.state)
     if(keys.length > 0){
       displayContent =
-      <SelectedRecord/>
+        <SelectedRecord/>
     }
     else if(this.props.masterRecordList.length > 0){
       displayContent =
@@ -34,7 +34,7 @@ const mapStateToProps = state => {
     masterRecordList: state.masterRecordList,
     queryTerm: state.queryTerm,
     selectedRecordDetails: state.selectedRecordDetails
-  };
-};
+  }
+}
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps)(App)

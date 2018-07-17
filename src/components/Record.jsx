@@ -1,12 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { fetchAlbumDetails } from './../actions';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { fetchAlbumDetails } from './../actions'
 
 function Record(props){
-  console.log(props);
+  console.log(props)
 
-  const {dispatch} = props;
+  const {dispatch} = props
   return (
     <div onClick={() => dispatch(fetchAlbumDetails(props.recordId))}>
       <img src={props.imageUrl}/>
@@ -16,9 +16,9 @@ function Record(props){
 }
 
 const mapStateToProps = state => {
-  return state;
-};
+  return state
+}
 
 
 
-export default connect(mapStateToProps)(Record);
+export default connect(mapStateToProps)(Record)

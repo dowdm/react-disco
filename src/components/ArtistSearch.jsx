@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { setQueryTerm, fetchArtistId } from './../actions';
+import { setQueryTerm, fetchArtistId } from './../actions'
 
 function ArtistSearch({ dispatch }){
   let input
@@ -12,8 +12,8 @@ function ArtistSearch({ dispatch }){
         if (!input.value.trim()) {
           return
         }
-        dispatch(setQueryTerm(input.value));
-        dispatch(fetchArtistId(input.value.trim()));
+        dispatch(setQueryTerm(input.value))
+        dispatch(fetchArtistId(input.value.trim()))
 
         input.value = ''
       }}>
@@ -30,4 +30,4 @@ ArtistSearch.propTypes = {
   dispatch: PropTypes.func
 }
 
-export default connect()(ArtistSearch);
+export default connect()(ArtistSearch)

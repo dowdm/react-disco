@@ -43,7 +43,7 @@ export function fetchArtistId(queryTerm) {
     const localArtistId = v4();
     dispatch(requestArtist(queryTerm, localArtistId));
     queryTerm = queryTerm.replace(' ', '_');
-    return fetch('https://api.discogs.com/database/search?q='+queryTerm+'&token=sssKUBpkkcKfFjXIahQgfpZlWzgVENurwhXnkoNn').then(
+    return fetch('https://api.discogs.com/database/search?q='+queryTerm+'&token=API-KEY').then(
       response => response.json(),
       error => console.log('An error occurred.', error),
     ).then(function(json) {
@@ -63,7 +63,7 @@ export function fetchArtistId(queryTerm) {
 
 export function fetchReleases(artistName, discogsArtistId, localArtistId, dispatch) {
   let discogsArtistIdString = discogsArtistId.toString();
-  return fetch('https://api.discogs.com/artists/'+ discogsArtistId +'/releases?&token=sssKUBpkkcKfFjXIahQgfpZlWzgVENurwhXnkoNn').then(
+  return fetch('https://api.discogs.com/artists/'+ discogsArtistId +'/releases?&token=API-KEY').then(
     response => response.json(),
     error => console.log('An error occurred.', error)
   ).then(function(j){
@@ -83,7 +83,7 @@ export function fetchReleases(artistName, discogsArtistId, localArtistId, dispat
 export function fetchAlbumDetails(recordId) {
   return function (dispatch) {
     let recordIdString = recordId.toString();
-    return fetch('https://api.discogs.com/releases/' + recordIdString + '?token=sssKUBpkkcKfFjXIahQgfpZlWzgVENurwhXnkoNn').then(
+    return fetch('https://api.discogs.com/releases/' + recordIdString + '?token=API-KEY').then(
       response => response.json(),
       error => console.log('An error occurred.', error)
     ).then(function(j){
