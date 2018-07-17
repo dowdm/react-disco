@@ -1,5 +1,6 @@
 import React from 'react'
 import Record from './Record'
+import { connect } from 'react-redux';
 
 function RecordList(props){
   return (
@@ -16,5 +17,11 @@ function RecordList(props){
     </div>
   )
 }
+const mapStateToProps = state => {
+  return {
+    masterRecordList: state.masterRecordList
+  };
+};
 
-export default RecordList
+
+export default connect(mapStateToProps)(RecordList);

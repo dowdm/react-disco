@@ -2,30 +2,16 @@ import React, { Component } from 'react'
 import './App.css'
 import ArtistSearch from './ArtistSearch'
 import RecordList from './RecordList'
+import { connect } from 'react-redux';
 
 class App extends React.Component {
   constructor(props){
     super(props)
-    this.state = {
-      queryTerm: null,
-      masterRecordList: {
-        // 1: {
-        //   imageUrl: 'http://www.slate.com/content/dam/slate/articles/health_and_science/Science/2017/08/170803_MEDEX_SickDog.jpg.CROP.promo-xlarge2.jpg',
-        //   albumName:'something else'
-        // },
-        // 2: {
-        //   imageUrl: 'http://www.slate.com/content/dam/slate/articles/health_and_science/Science/2017/08/170803_MEDEX_SickDog.jpg.CROP.promo-xlarge2.jpg',
-        //   albumName:'something else'
-        // }
-      }
-    }
-    this.handleSearch = this.handleSearch.bind(this);
   }
 
-  handleSearch(queryTerm){
-    this.state.queryTerm = queryTerm;
-    console.log(this.state);
-  }
+  // handleSearch(queryTerm){
+  //   this.props.queryTerm = queryTerm;
+  // }
 
   render() {
     let keys =Object.keys(this.state.masterRecordList);
@@ -34,7 +20,7 @@ class App extends React.Component {
     console.log(this.state);
     if(keys.length > 0){
       displayContent =
-        <RecordList masterRecordList={this.state.masterRecordList} queryTerm={this.state.queryTerm}/>
+        <RecordList masterRecordList={this.props.masterRecordList} queryTerm={this.props.queryTerm}/>
     } else {
       displayContent = <ArtistSearch onSearch={this.handleSearch}/>
     }
@@ -46,4 +32,12 @@ class App extends React.Component {
   }
 }
 
-export default App
+const mapStateToProps = state => {
+  return {
+    masterRecordList: state.masterRecordList,
+    queryTerm: state.queryTerm
+  };
+};
+
+
+export default connect(mapStateToProps)(App);
